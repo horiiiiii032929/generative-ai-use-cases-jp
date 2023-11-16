@@ -193,6 +193,7 @@ const App: React.FC = () => {
             <div
               className="text-aws-font-color screen:h-full overflow-hidden overflow-y-auto"
               id="main">
+              model: amazon.titan-text-express-v1
               <Outlet />
             </div>
           </main>

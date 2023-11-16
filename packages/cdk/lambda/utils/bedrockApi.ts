@@ -11,30 +11,31 @@ const client = new BedrockRuntimeClient({
 });
 
 const PARAMS = {
-  max_tokens_to_sample: 3000,
-  temperature: 0.6,
-  top_k: 300,
-  top_p: 0.8,
-};
+  textGenerationConfig: {
+    maxTokenCount: 8192,
+    temperature:0,
+    topP:1
+  }
+}
 
 const bedrockApi: ApiInterface = {
   invoke: async (messages) => {
     const command = new InvokeModelCommand({
       modelId: process.env.MODEL_NAME,
       body: JSON.stringify({
-        prompt: generatePrompt(messages),
+        inputText: generatePrompt(messages),
         ...PARAMS,
       }),
       contentType: 'application/json',
     });
     const data = await client.send(command);
-    return JSON.parse(data.body.transformToString()).completion;
+    return JSON.parse(data.body.transformToString()).results[0].outputText;
   },
   invokeStream: async function* (messages) {
     const command = new InvokeModelWithResponseStreamCommand({
       modelId: process.env.MODEL_NAME,
       body: JSON.stringify({
-        prompt: generatePrompt(messages),
+        inputText: generatePrompt(messages),
         ...PARAMS,
       }),
       contentType: 'application/json',
@@ -52,10 +53,10 @@ const bedrockApi: ApiInterface = {
       const body = JSON.parse(
         new TextDecoder('utf-8').decode(streamChunk.chunk?.bytes)
       );
-      if (body.completion) {
-        yield body.completion;
+      if (body.outputText) {
+        yield body.outputText;
       }
-      if (body.stop_reason) {
+      if (body.completionReason) {
         break;
       }
     }
