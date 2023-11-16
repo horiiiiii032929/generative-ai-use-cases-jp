@@ -193,6 +193,7 @@ const App: React.FC = () => {
             <div
               className="text-aws-font-color screen:h-full overflow-hidden overflow-y-auto"
               id="main">
+                model: ai21.j2-ultra-v1
               <Outlet />
             </div>
           </main>

@@ -11,10 +11,9 @@ const client = new BedrockRuntimeClient({
 });
 
 const PARAMS = {
-  max_tokens_to_sample: 3000,
-  temperature: 0.6,
-  top_k: 300,
-  top_p: 0.8,
+  maxTokens: 200,
+  temperature: 0.5,
+  topP: 0.5
 };
 
 const bedrockApi: ApiInterface = {
@@ -28,7 +27,7 @@ const bedrockApi: ApiInterface = {
       contentType: 'application/json',
     });
     const data = await client.send(command);
-    return JSON.parse(data.body.transformToString()).completion;
+    return JSON.parse(data.body.transformToString()).completions[0].data.text;
   },
   invokeStream: async function* (messages) {
     const command = new InvokeModelWithResponseStreamCommand({
@@ -52,10 +51,10 @@ const bedrockApi: ApiInterface = {
       const body = JSON.parse(
         new TextDecoder('utf-8').decode(streamChunk.chunk?.bytes)
       );
-      if (body.completion) {
-        yield body.completion;
+      if (body.completions[0].data.text) {
+        yield body.completions[0].data.text;
       }
-      if (body.stop_reason) {
+      if (body.body.completions[0].finishReason) {
         break;
       }
     }

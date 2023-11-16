@@ -24,5 +24,5 @@ npm run cdk:deploy -- -c modelRegion=ap-northeast-1 -c modelName=anthropic.claud
 **us-east-1 (バージニア) の Amazon Bedrock Claude Instant を利用する**
 
 ```bash
-npm run cdk:deploy -- -c modelRegion=us-east-1 -c modelName=anthropic.claude-instant-v1 -c promptTemplate=claude.json
+npm run cdk:deploy -- -c modelRegion=us-east-1 -c modelName=ai21.j2-ultra-v1 -c promptTemplate=claude.json
 ```
