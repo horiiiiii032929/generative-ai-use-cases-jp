@@ -25,4 +25,7 @@ npm run cdk:deploy -- -c modelRegion=ap-northeast-1 -c modelName=anthropic.claud
 
 ```bash
 npm run cdk:deploy -- -c modelRegion=us-east-1 -c modelName=anthropic.claude-instant-v1 -c promptTemplate=claude.json
+
+npm run cdk:deploy -- -c modelRegion=us-east-1 -c modelName=meta.llama2-13b-chat-v1 -c promptTemplate=llama2.json
+
 ```

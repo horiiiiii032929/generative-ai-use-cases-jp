@@ -193,6 +193,7 @@ const App: React.FC = () => {
             <div
               className="text-aws-font-color screen:h-full overflow-hidden overflow-y-auto"
               id="main">
+              model: meta.llama2-13b-chat-v1
               <Outlet />
             </div>
           </main>
