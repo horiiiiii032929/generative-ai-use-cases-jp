@@ -40,7 +40,7 @@ if (allowedIpV4AddressRanges || allowedIpV6AddressRanges) {
 
 const generativeAiUseCasesStack = new GenerativeAiUseCasesStack(
   app,
-  'GenerativeAiUseCasesStack',
+  'GenerativeAiUseCasesStack-cohere',
   {
     env: {
       region: process.env.CDK_DEFAULT_REGION,

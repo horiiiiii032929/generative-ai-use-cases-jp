@@ -2,7 +2,7 @@
 
 set -eu
 
-STACK_NAME='GenerativeAiUseCasesStack'
+STACK_NAME='GenerativeAiUseCasesStack-cohere'
 
 function stack_output {
     aws cloudformation describe-stacks \

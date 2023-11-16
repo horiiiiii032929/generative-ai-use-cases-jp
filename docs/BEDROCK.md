@@ -25,4 +25,9 @@ npm run cdk:deploy -- -c modelRegion=ap-northeast-1 -c modelName=anthropic.claud
 
 ```bash
 npm run cdk:deploy -- -c modelRegion=us-east-1 -c modelName=anthropic.claude-instant-v1 -c promptTemplate=claude.json
+
+npm run cdk:deploy -- -c modelRegion=us-east-1 -c modelName=cohere.command-text-v14 -c promptTemplate=claude.json
+
+
+
 ```
