@@ -12,7 +12,7 @@ const client = new BedrockRuntimeClient({
 
 const PARAMS = {
   textGenerationConfig: {
-    maxTokenCount: 8192,
+    maxTokenCount: 4096,
     temperature:0,
     topP:1
   }
@@ -29,6 +29,7 @@ const bedrockApi: ApiInterface = {
       contentType: 'application/json',
     });
     const data = await client.send(command);
+    console.log(data.body.transformToString())
     return JSON.parse(data.body.transformToString()).results[0].outputText;
   },
   invokeStream: async function* (messages) {
@@ -53,6 +54,7 @@ const bedrockApi: ApiInterface = {
       const body = JSON.parse(
         new TextDecoder('utf-8').decode(streamChunk.chunk?.bytes)
       );
+      console.log(body)
       if (body.outputText) {
         yield body.outputText;
       }
